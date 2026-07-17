@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>GhostText</title>
-        <link rel="stylesheet" href="../static/css/style.css">
-    </head>
-    <body>
-        
-        <div class="top-bar">
-            <button id="langBtn" class="lang-switch">
-                <span id="textEN" class="active-lang">EN</span>
-                <span class="divider">/</span>
-                <span id="textAR">AR</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostText</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+    <div class="background">
+        <div class="gradient"></div>
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+        <div class="waves">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <header class="top-bar">
+        <button id="langBtn" class="lang-switch">
+            <span id="textEN" class="active-lang">EN</span>
+            <span class="divider">/</span>
+            <span id="textAR">AR</span>
+        </button>
+    </header>
+
+    <main class="container">
+        <h1 class="logo">Gh<span class="ghost-icon">👻</span>st<span>Text</span></h1>
+
+        <button id="helpBtn" class="help-btn" aria-label="Help">?</button>
+
+        <div class="action-buttons">
+            <button id="hideBtn" class="primary-btn">
+                <span class="icon">🔒</span>
+                <span>Hide Secret</span>
+            </button>
+            <button id="extractBtn" class="secondary-btn">
+                <span class="icon">🔓</span>
+                <span>Extract Secret</span>
             </button>
         </div>
-        
-        <div class="hacker-container">
-            <h1 class="logo">Ghost<span>Text</span></h1>
-            
-            <div class="action-buttons">
-                <button id="hideBtn" class="btn-hide">🔒 Hide Secret</button>
-                <button id="extractBtn" class="btn-extract">🔓 Extract Secret</button>
-            </div>
-            
-        </div>
-        
-    </body>
+    </main>
+
+</body>
 </html>
