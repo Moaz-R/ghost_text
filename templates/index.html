@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GhostText</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
+
 <body>
 
-    <div class="background">
-        <div class="gradient"></div>
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
-        <div class="waves">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <div class="back-div">
+        <div class="color-layer"></div>
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+        <div class="shape3"></div>
     </div>
 
-    <header class="top-bar">
-        <button id="langBtn" class="lang-switch">
-            <span id="textEN" class="active-lang">EN</span>
+    <header class="top-box">
+        <button id="langBtn" class="btn-lang">
+            <span id="textEN" class="text-active">EN</span>
             <span class="divider">/</span>
             <span id="textAR">AR</span>
         </button>
     </header>
 
-    <main class="container">
-        <h1 class="logo">Gh<span class="ghost-icon">👻</span>st<span>Text</span></h1>
+    <main class="main-box">
+        <h1 class="my-logo">Gh<span class="emoji-ghost">👻</span>st<span>Text</span></h1>
 
-        <button id="helpBtn" class="help-btn" aria-label="Help">?</button>
+        <button id="helpBtn" class="btn-question" aria-label="Help">?</button>
 
-        <div class="action-buttons">
-            <button id="hideBtn" class="primary-btn">
-                <span class="icon">🔒</span>
+        <div class="all-buttons">
+            <button id="hideBtn" class="button-1">
+                <span class="icon-lock">🔒</span>
                 <span>Hide Secret</span>
             </button>
-            <button id="extractBtn" class="secondary-btn">
-                <span class="icon">🔓</span>
+            <button id="extractBtn" class="button-2">
+                <span class="icon-lock">🔓</span>
                 <span>Extract Secret</span>
             </button>
         </div>
     </main>
 
 </body>
+
 </html>
