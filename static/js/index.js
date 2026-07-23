@@ -115,22 +115,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         var cReady = false;
-        if (ci.files.length > 0) {
+        if (ci && ci.files && ci.files.length > 0) {
             cReady = true;
         }
 
         var sReady = false;
         if (mode === 'file') {
-            if (si.files.length > 0) {
+            if (si && si.files && si.files.length > 0) {
                 sReady = true;
             }
-        } else {
+        }
+        else {
             if (st) {
                 if (st.value.trim().length > 0) {
                     sReady = true;
                 }
             }
         }
+
 
         if (cReady == true) {
             if (sReady == true) {
@@ -311,4 +313,29 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+    checkReady();
+
+    if (en) {
+        en.addEventListener("click", async function (e) {
+            e.preventDefault();
+            try {
+                const cover = await ci.files[0].text();
+                let secret = "";
+
+                if (mode === "file") {
+                    secret = await si.files[0].text();
+                } else {
+                    secret = st.value;
+                }
+
+                const result = encodeSecretMessage(cover, secret);
+                downloadOutputTxt(result);
+
+            } catch (err) {
+                console.error(err);
+                alert("Encoding failed.");
+            }
+        });
+    }
+
 });
