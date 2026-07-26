@@ -1,36 +1,55 @@
 function encodeSecretMessage(coverText, secretText) {
-    const bytes = new TextEncoder().encode(secretText);
-    let out = [];
+    coverText = coverText.replace(/[\u200B\u200C]/g, "");
 
+    const bytes = new TextEncoder().encode(secretText);
+    let secretBits = [];
     for (let i = 0; i < bytes.length; i++) {
         let bits = bytes[i].toString(2).padStart(8, "0");
-
         for (let j = 0; j < bits.length; j++) {
             if (bits[j] === "0") {
-                out.push("\u200B");
+                secretBits.push("\u200B");
             } else {
-                out.push("\u200C");
+                secretBits.push("\u200C");
             }
         }
     }
 
-    return coverText + out.join("");
-}
+    if (secretBits.length === 0) return coverText;
 
-function downloadOutputTxt(content) {
-    const blob = new Blob([content], {
-        type: "text/plain;charset=utf-8"
-    });
+    let spacesCount = 0;
+    for (const ch of coverText) {
+        if (ch === ' ' || ch === '\n') {
+            spacesCount++;
+        }
+    }
 
-    const url = URL.createObjectURL(blob);
+    let result = "";
+    let bitIndex = 0;
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "output.txt";
+    if (spacesCount > 0) {
+        const baseBits = Math.floor(secretBits.length / spacesCount);
+        const extraBits = secretBits.length % spacesCount;
+        let spaceIndex = 0;
 
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+        for (let i = 0; i < coverText.length; i++) {
+            const ch = coverText[i];
+            result += ch;
 
-    URL.revokeObjectURL(url);
+            if ((ch === ' ' || ch === '\n') && bitIndex < secretBits.length) {
+                const take = baseBits + (spaceIndex < extraBits ? 1 : 0);
+                const chunk = secretBits.slice(bitIndex, bitIndex + take);
+                result += chunk.join("");
+                bitIndex += chunk.length;
+                spaceIndex++;
+            }
+        }
+    } else {
+        result = coverText;
+    }
+
+    if (bitIndex < secretBits.length) {
+        result += secretBits.slice(bitIndex).join("");
+    }
+
+    return result;
 }
