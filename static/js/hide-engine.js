@@ -6,7 +6,11 @@ function encodeSecretMessage(coverText, secretText) {
     for (let i = 0; i < bytes.length; i++) {
         let bits = bytes[i].toString(2).padStart(8, "0");
         for (let j = 0; j < bits.length; j++) {
-            secretBits.push(bits[j] === "0" ? "\u200B" : "\u200C");
+            if (bits[j] === "0") {
+                secretBits.push("\u200B");
+            } else {
+                secretBits.push("\u200C");
+            }
         }
     }
 
@@ -40,12 +44,7 @@ function encodeSecretMessage(coverText, secretText) {
             }
         }
     } else {
-        if (coverText.length > 1) {
-            result = coverText[0] + secretBits.join("") + coverText.substring(1);
-        } else if (coverText.length === 1) {
-            result = secretBits.join("") + coverText;
-        }
-        bitIndex = secretBits.length;
+        result = coverText;
     }
 
     if (bitIndex < secretBits.length) {
